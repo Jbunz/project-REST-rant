@@ -8,3 +8,5 @@ MVC (MODEL, VIEW, CONTROLLER)
 MODEL
 VIEW
 CONTROLLER
+
+Run nodemon = npx nodemon index.js
