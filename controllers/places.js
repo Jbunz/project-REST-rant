@@ -1,5 +1,10 @@
 const router = require("express").Router();
 
+// GET /places/new
+router.get("/new", (req, res) => {
+  res.render("places/new");
+});
+
 // GET /places
 router.get("/", (req, res) => {
   let places = [
@@ -8,14 +13,14 @@ router.get("/", (req, res) => {
       city: "Escondido",
       state: "CA",
       cuisines: "Mexican",
-      pic: "http://placekitten.com/250/250",
+      pic: "/images/Tacos.jpg",
     },
     {
       name: "Louis",
       city: "San Diego",
       state: "CA",
       cuisines: "Italian",
-      pic: "http://placekitten.com/250/250",
+      pic: "/images/Pasta.jpg",
     },
   ];
 
