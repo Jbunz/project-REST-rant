@@ -9,14 +9,14 @@ function home() {
         <div>
           <img src="/images/I-like-beer.jpg" alt="Beer" className="image" />
           <div>
-            
+
             <a href="https://unsplash.com/@enginakyurt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
               engin akyurt
             </a>
-            
+
             <a href="https://unsplash.com/photos/clear-glass-beer-mug-with-beer-3ORoQEJY9LA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
               Unsplash
-           </a>
+            </a>
           </div>
         </div>
         <a href="/places">
