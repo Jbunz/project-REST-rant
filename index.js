@@ -1,6 +1,7 @@
 // Modules and Globals
 require("dotenv").config();
 const express = require("express");
+const mongoose = require('mongoose')
 const app = express();
 const methodOverride = require('method-override')
 
@@ -21,7 +22,11 @@ app.get("*", (req, res) => {
   res.render("error404");
 });
 
-//const PORT = process.env.PORT
-app.listen(process.env.PORT);
+//db connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('DB connected'))
+  .catch(err => console.error(err))
 
-app.use(express.urlencoded({ extended: true }))
+const PORT = process.env.PORT || 3000
+app.listen(PORT, console.log(`listening on port ${PORT}`))
+
