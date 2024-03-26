@@ -4,8 +4,8 @@ const db = require('../models')
 
 router.get('/:id', (req, res) => {
   db.Place.findById(req.params.id)
-  .then(place => {
-      res.render('places/show', { place })
+  .then((places) => {
+      res.render('places/show', { places })
   })
   .catch(err => {
       console.log('err', err)
@@ -19,13 +19,13 @@ router.post('/', (req, res) => {
       res.redirect('/places')
   })
   .catch(err => {
-      console.log('err', err)
-      res.render('error404')
+      if (err && err.name == 'ValidationError') {
+          // TODO: Generate error message(s)
+      }
+      else {
+          res.render('error404')
+      }
   })
-})
-
-router.get('/new', (req, res) => {
-  res.render('places/new')
 })
 
 router.get('/:id', (req, res) => {
