@@ -7,14 +7,33 @@ function Show(data) {
       No comments yet!
     </h3>
   )
+  let rating = (
+    <h3 className="inactive">
+      Not yet rated
+    </h3>
+  )
   if (data.place.comments.length) {
+    let sumRatings = data.place.comments.reduce((tot, c) => {
+      return tot + c.stars
+    }, 0)
+    let averageRating = Math.round(sumRatings / data.place.comments.length)
+    let stars = ''
+    for (let i = 0; i < averageRating; i++) {
+      stars += '⭐️'
+    }
+    rating = (
+      <h3>
+        {stars} stars
+      </h3>
+    )
+
     comments = data.place.comments.map(c => {
       return (
-        <div className="border">
-          <h2 className="rant">{c.rant ? 'Rant! ðŸ˜¡' : 'Rave! ðŸ˜»'}</h2>
+        <div className="border col-sm-4">
+          <h2 className="rant">{c.rant ? 'Rant! 😡' : 'Rave! 😊'}</h2>
           <h4>{c.content}</h4>
           <h3>
-            <stong>- {c.author}</stong>
+            <strong>- {c.author}</strong>
           </h3>
           <h4>Rating: {c.stars}</h4>
         </div>
@@ -33,17 +52,11 @@ function Show(data) {
             </h3>
           </div>
           <div className="col-sm-6">
-            ...
             <h2>
-              Description
+              Rating
             </h2>
-            <h3>
-              {data.place.showEstablished()}
-            </h3>
-            <h4>
-              Serving {data.place.cuisines}
-            </h4>
-            ...
+            {rating}
+            {/* Other content */}
           </div>
         </div>
         <h2>Comments</h2>
@@ -58,6 +71,24 @@ function Show(data) {
           Delete
         </button>
       </form>
+      <h1>Edit Place</h1>
+<form method="POST" action={`/places/${data.place.id}?_method=PUT`}>
+    ...
+    <div className="row">
+        ...
+        <div className="form-group col-sm-4">
+            <label htmlFor="founded">Founded</label>
+            <input className="form-control" 
+              id="founded" 
+              name="founded" 
+              value={data.place.founded} 
+            />
+        </div>
+    </div>
+    ...
+    <input className="btn btn-primary" type="submit" value="Update Place" />
+</form>
+
     </Def>
   );
 }
